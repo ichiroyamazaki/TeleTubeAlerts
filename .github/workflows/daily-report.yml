@@ -1,0 +1,37 @@
+name: Daily YouTube report
+
+on:
+  schedule:
+    - cron: "30 15 * * *"   # 15:30 UTC = 11:30 PM Philippine time
+  workflow_dispatch:         # lets you run it manually from the Actions tab
+
+permissions:
+  contents: write
+
+jobs:
+  report:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies
+        run: pip install requests tzdata
+
+      - name: Send report
+        env:
+          TELEGRAM_TOKEN: ${{ secrets.TELEGRAM_TOKEN }}
+          YOUTUBE_API_KEY: ${{ secrets.YOUTUBE_API_KEY }}
+          CHANNEL_ID: ${{ secrets.CHANNEL_ID }}
+          MY_CHAT_ID: ${{ secrets.MY_CHAT_ID }}
+        run: python yt_daily_report_bot.py --now
+
+      - name: Save history for tomorrow's comparison
+        run: |
+          git config user.name "github-actions"
+          git config user.email "github-actions@users.noreply.github.com"
+          git add stats_history.json
+          git diff --staged --quiet || (git commit -m "Update stats history" && git push)
