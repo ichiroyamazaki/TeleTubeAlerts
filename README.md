@@ -1,70 +1,100 @@
-# 📊 Telegram YouTube Stats Bot
+# 📊 Telegram YouTube Stats Bot (TeleTubeAlerts)
 
-> A robust, lightning-fast Telegram bot designed to fetch and display real-time YouTube channel analytics, subscriber milestones, view counts, and video statistics instantly within your Telegram chats.
+> A robust, automated Telegram bot designed to deliver daily YouTube channel analytics and milestone alerts straight to your chat. 
 
-[![Python Version](https://img.shields.io/badge/python-3.9%2B-blue.svg)](https://www.python.org/)
-[![Telegram API](https://img.shields.io/badge/Telegram-Bot%20API-2CA5E0?logo=telegram&logoColor=white)](https://core.telegram.org/bots/api)
-[![YouTube API](https://img.shields.io/badge/YouTube-Data%20API%20v3-FF0000?logo=youtube&logoColor=white)](https://developers.google.com/youtube/v3)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+<div align="center">
 
-Developed and maintained by **GoForAll Worldwide Corporation**  
-Created by **Ichiro Yamazaki**
+[![GitHub Release](https://img.shields.io/github/v/release/ichiroyamazaki/TeleTubeAlerts?style=flat-square&color=blue)](https://github.com/ichiroyamazaki/TeleTubeAlerts/releases)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=flat-square)](LICENSE)
+[![Python Version](https://img.shields.io/badge/python-3.8%2B-blue.svg?style=flat-square)](https://www.python.org/)
+[![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg?style=flat-square)](https://github.com/ichiroyamazaki/TeleTubeAlerts/graphs/commit-activity)
+
+</div>
 
 ---
 
-## 🚀 Features
+## 🚀 Overview
 
-* **Real-Time Analytics:** Pulls live subscriber counts, total views, and video upload statistics straight from the YouTube Data API v3.
-* **Instant Command Lookups:** Query any public YouTube channel using simple Telegram commands (`/stats`).
-* **Rich Markdown Formatting:** Clean, easily readable outputs with emojis, clean spacing, and structured data layouts.
-* **Lightweight & Async:** Built using asynchronous Python libraries for high concurrency and zero lag under heavy group loads.
-* **Secure Environment Configuration:** Environment-based credential management to keep API keys safe.
+**TeleTubeAlerts** is an automated monitoring tool built for creators, agencies, and community managers who want to keep a close eye on their YouTube performance without constantly opening YouTube Studio. Powered by Python and integrated seamlessly with the Telegram Bot API and YouTube Data API v3, it fetches up-to-date metrics—such as subscriber counts, total views, and video uploads—and pushes structured daily summaries directly to your Telegram channel or group.
+
+---
+
+## 💼 Corporate & Creator Credit
+
+* **Developed by:** [Ichiro Yamazaki](https://github.com/ichiroyamazaki)
+* **Organization:** GoForAll Worldwide Corporation
+
+---
+
+## ✨ Features
+
+* **Daily Automated Reports:** Scheduled updates providing clear, at-a-glance performance metrics.
+* **Real-Time Channel Metrics:** Tracks total subscribers, view counts, video counts, and growth variations.
+* **Lightweight & Fast:** Built with efficiency in mind to run smoothly on local machines, VPS, or cloud containers (Docker-ready).
+* **Easy Configuration:** Simple environment variables setup to manage Telegram tokens and YouTube channel IDs.
 
 ---
 
 ## 🛠️ Tech Stack
 
-* **Language:** Python 3.9+
-* **Framework / Library:** `python-telegram-bot` (or `aiogram`)
-* **API:** YouTube Data API v3
+* **Language:** Python 3.8+
+* **APIs:** 
+  * Telegram Bot API
+  * YouTube Data API v3
+* **Libraries:** `requests`, `python-dotenv`, `apscheduler` (or equivalent task scheduler)
 
 ---
 
-## 📋 Prerequisites
+## 📦 Project Structure
 
-Before running or deploying the bot, make sure you have:
-1. Python `3.9` or higher installed on your machine.
-2. A **Telegram Bot Token** obtained from [@BotFather](https://t.me/BotFather).
-3. A **Google Cloud / YouTube Data API v3 Key** from the [Google Cloud Console](https://console.cloud.google.com/).
+```text
+TeleTubeAlerts/
+├── bot.py              # Main application entry point
+├── config.py           # Configuration and environment loaders
+├── requirements.txt    # Python dependencies
+├── .env.example        # Template for environment variables
+└── README.md           # Project documentation
+⚙️ Installation & Setup
+1. Clone the Repository
+Bash
+git clone [https://github.com/ichiroyamazaki/TeleTubeAlerts.git](https://github.com/ichiroyamazaki/TeleTubeAlerts.git)
+cd TeleTubeAlerts
+2. Install Dependencies
+Make sure you have Python 3.8+ installed, then run:
 
----
+Bash
+pip install -r requirements.txt
+3. Configure Environment Variables
+Create a .env file in the root directory using the template provided below or copy .env.example:
 
-## ⚙️ Installation & Local Setup
-
-1. **Clone the Repository:**
-   ```bash
-   git clone [https://github.com/GoForAll-Worldwide-Corporation/telegram-youtube-stats-bot.git](https://github.com/GoForAll-Worldwide-Corporation/telegram-youtube-stats-bot.git)
-   cd telegram-youtube-stats-bot
-Create and Activate a Virtual Environment:Bashpython -m venv venv
-# On Windows:
-venv\Scripts\activate
-# On macOS/Linux:
-source venv/bin/activate
-Install Dependencies:Bashpip install -r requirements.txt
-Configure Environment Variables:Create a .env file in the root directory and add your credentials:Code snippetTELEGRAM_BOT_TOKEN=your_telegram_bot_token_here
+Code snippet
+TELEGRAM_BOT_TOKEN=your_telegram_bot_token_here
+TELEGRAM_CHAT_ID=your_telegram_chat_id_here
 YOUTUBE_API_KEY=your_google_youtube_api_key_here
-Run the Bot:Bashpython main.py
-⌨️ Bot CommandsCommandDescriptionExample/startInitializes the bot and displays the welcome message./start/statsFetches public analytics for a specified YouTube channel or username./stats @GoForAllCorp/helpDisplays usage instructions and available commands./help📁 Project StructurePlaintexttelegram-youtube-stats-bot/
-│
-├── core/
-│   ├── __init__.py
-│   ├── bot_handler.py      # Telegram command logic & routers
-│   └── youtube_client.py   # YouTube Data API v3 integration wrapper
-│
-├── .env.example            # Template for environment variables
-├── .gitignore              # Ignored files (venv, .env, __pycache__)
-├── LICENSE                 # MIT License file
-├── README.md               # Project documentation
-├── requirements.txt        # Python package dependencies
-└── main.py                 # Application entry point
-🏢 Corporate OwnershipThis project is official open-source software owned and managed by GoForAll Worldwide Corporation.Lead Architect & Developer: Ichiro YamazakiContact & Support: For corporate inquiries, bug reports, or feature requests, please open an issue in this repository or contact the GoForAll development team.📄 LicenseDistributed under the MIT License. See LICENSE for more information.
+YOUTUBE_CHANNEL_ID=your_youtube_channel_id_here
+TELEGRAM_BOT_TOKEN: Get this from @BotFather on Telegram.
+
+TELEGRAM_CHAT_ID: The target chat or channel ID where alerts will be posted.
+
+YOUTUBE_API_KEY: Generated via the Google Cloud Console with YouTube Data API v3 enabled.
+
+YOUTUBE_CHANNEL_ID: The unique identifier of the YouTube channel you want to monitor.
+
+4. Run the Bot
+Bash
+python bot.py
+🤝 Contributing
+Contributions, bug reports, and feature requests are welcome!
+
+Fork the Project
+
+Create your Feature Branch (git checkout -b feature/AmazingFeature)
+
+Commit your Changes (git commit -m 'Add some AmazingFeature')
+
+Push to the Branch (git push origin feature/AmazingFeature)
+
+Open a Pull Request
+
+📜 License
+Distributed under the MIT License. See LICENSE for more information.
