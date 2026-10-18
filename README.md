@@ -4,7 +4,7 @@
 
 <div align="center">
 
-[![GitHub Release](https://img.shields.io/github/v/release/ichiroyamazaki/TeleTubeAlerts?style=flat-square&color=blue)](https://github.com/ichiroyamazaki/TeleTubeAlerts/releases)
+[![GitHub Release](https://img.shields.io/github/v/release/ichiroyamazaki/TeleTubeAlerts?style=flat-square&color=green)](https://github.com/ichiroyamazaki/TeleTubeAlerts/releases)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=flat-square)](LICENSE)
 [![Python Version](https://img.shields.io/badge/python-3.8%2B-blue.svg?style=flat-square)](https://www.python.org/)
 [![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg?style=flat-square)](https://github.com/ichiroyamazaki/TeleTubeAlerts/graphs/commit-activity)
